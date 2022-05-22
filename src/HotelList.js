@@ -1,8 +1,8 @@
 import React from "react";
 
-const List = props => {
+const HotelList = props => {
 
-    const render_flights = props.flight.map((f,i)=>{
+    const render_hotel = props.hotel.map((f,i)=>{
 
         return <div key={i} className="item">
             <img className="ui image" src={f.optimizedThumbUrls.srpDesktop}/>
@@ -18,13 +18,18 @@ const List = props => {
         </div>;
     })
 
+    if(props.hotel.length === 0)
+    return (
+        <div className="ui active centered inline loader"></div>
+    );
+
     return (
         <div>
             <div className="ui celled list">
-                {render_flights}
+                {render_hotel}
             </div>
         </div>
     );
 }
 
-export default List;
+export default HotelList;
