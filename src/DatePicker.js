@@ -4,7 +4,6 @@ const DatePicker = props => {
 
   return (
     <div>
-        <h3>Input</h3>
         <div className="ui form" >
             <label className='label'>{props.label}</label>
             <div className="ui calendar">

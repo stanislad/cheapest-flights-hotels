@@ -1,39 +1,16 @@
 import React, {useState} from 'react';
 import Title from "./Title";
 import FindFlight from "./FindFlight";
-import Dropdown from "./Dropdown";
-import DatePicker from "./DatePicker";
+import List from "./List";
 
 function App() {
-
-    const options = [
-        {
-            value: 'Spain',
-            label: 'Spain'
-        },
-        {
-            value: 'France',
-            label: 'France'
-        },
-        {
-            value: 'Italy',
-            label: 'Italy'
-        }
-    ];
-    const [airport, setAirport] = useState(options[0]);
-    const [date, setDate] = useState('2022-05-21');
+    const [flight, setFlights] = useState([]);
 
   return (
     <div className='ui container'>
       <Title/>
-      <DatePicker label='Flight Date' date={date} setter={setDate}/>
-      <Dropdown
-          options={options}
-          label='Destination Airport'
-          setter={setAirport}
-          selectedOption={airport}
-      />
-      <FindFlight/>
+      <FindFlight flight={flight} setter={setFlights}/>
+      <List flight={flight}/>
     </div>
   );
 }
