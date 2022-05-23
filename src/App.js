@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import Title from "./Title";
-import FindFlight from "./FindFlight";
-import FlightList from "./FlightList";
-import HotelList from "./HotelList";
+import Title from "./components/Title";
+import FindFlight from "./components/FindFlight";
+import FlightList from "./components/FlightList";
+import HotelList from "./components/HotelList";
 
 function App() {
     const [hotel, setHotel] = useState([]);
