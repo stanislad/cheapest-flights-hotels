@@ -1,10 +1,15 @@
 import React from "react";
+import $ from 'jquery';
 
 const HotelList = props => {
 
+    const onItemClick = () =>{
+
+    }
+
     const render_hotel = props.hotel.map((f,i)=>{
 
-        return <div key={i} className="item">
+        return <div key={i} className="item" onClick={onItemClick}>
             <img className="ui image" src={f.optimizedThumbUrls.srpDesktop}/>
             <div className="content">
                 <div className="header">{f.name}</div>

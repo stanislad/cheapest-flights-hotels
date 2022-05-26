@@ -1,23 +1,16 @@
-import React, {useState} from 'react';
-import Title from "./components/Title";
-import FindFlight from "./components/FindFlight";
-import FlightList from "./components/FlightList";
-import HotelList from "./components/HotelList";
+import React from 'react';
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import Home from "./components/Home";
 
 function App() {
-    const [hotel, setHotel] = useState([]);
-    const [flight, setFlights] = useState([]);
 
   return (
-    <div className='ui container'>
-      <Title/>
-      <FindFlight
-          flight={flight} setFlights={setFlights}
-          hotel={hotel} setHotel={setHotel}
-      />
-      <FlightList flight={flight}/>
-      <HotelList hotel={hotel}/>
-    </div>
+      <Router>
+        <Routes>
+          <Route path='/' element={<Home/>}>
+          </Route>
+        </Routes>
+      </Router>
   );
 }
 

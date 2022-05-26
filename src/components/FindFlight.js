@@ -10,20 +10,29 @@ const FindFlight = props => {
     const options = [
         {
             value: 549499,
-            label: 'London'
+            label: 'London',
+            short: 'LON'
         },
         {
             value: 504261,
-            label: 'Paris'
+            label: 'Paris',
+            short: 'PAR'
         },
         {
             value: 353181,
-            label: 'Milan'
+            label: 'Milan',
+            short: 'MIL'
         }
     ];
     const [airport, setAirport] = useState(options[0]);
-    const [startDate, setStartDate] = useState('2022-05-23');
-    const [endDate, setEndDate] = useState('2022-05-24');
+
+    var today = new Date();
+    var start_date = today.toISOString().split('T')[0];
+    today.setDate(today.getDate() + 1);
+    var end_date = today.toISOString().split('T')[0];
+
+    const [startDate, setStartDate] = useState(start_date);
+    const [endDate, setEndDate] = useState(end_date);
 
     useEffect((url, config) => {
         console.log(props.flight)
@@ -64,8 +73,10 @@ const FindFlight = props => {
                 });
 
 
-            const res = await flights.get('v1/prices/cheap')
-            props.setFlights(res.data.data.LON)
+            const res = await flights.get('v1/prices/cheap',{
+                params: {origin: 'MHT', page: 'None', currency: 'GBP', destination: airport.short},
+            })
+            props.setFlights(res.data.data[airport.short])
         }
         run();
 
