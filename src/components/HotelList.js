@@ -1,26 +1,31 @@
 import React from "react";
 import $ from 'jquery';
+import {Link} from "react-router-dom";
 
 const HotelList = props => {
 
-    const onItemClick = () =>{
-
-    }
-
     const render_hotel = props.hotel.map((f,i)=>{
 
-        return <div key={i} className="item" onClick={onItemClick}>
+        return (
+            <div key={i} className="item">
+
+
             <img className="ui image" src={f.optimizedThumbUrls.srpDesktop}/>
-            <div className="content">
-                <div className="header">{f.name}</div>
-                {f.neighbourhood}
-                <div className="ui tag labels">
-                    <a className="ui label">
-                        {f.ratePlan.price.current}
-                    </a>
-                </div>
+
+                <div className="content">
+                <Link to='/about'>
+                    <div className="header">{f.name}</div>
+                    {f.neighbourhood}
+                    <div className="ui tag labels">
+                        <div className="ui label">
+                            {f.ratePlan.price.current}
+                        </div>
+                    </div>
+                </Link>
             </div>
-        </div>;
+
+        </div>
+        );
     })
 
     if(props.hotel.length === 0)

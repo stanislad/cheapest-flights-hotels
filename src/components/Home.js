@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import Title from "./Title";
 import FindFlight from "./FindFlight";
 import FlightList from "./FlightList";
 import HotelList from "./HotelList";
@@ -10,8 +9,7 @@ function Home() {
     const [flight, setFlights] = useState([]);
 
     return (
-            <div className='ui container'>
-                <Title/>
+            <div>
                 <FindFlight
                     flight={flight} setFlights={setFlights}
                     hotel={hotel} setHotel={setHotel}
