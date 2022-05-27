@@ -1,15 +1,21 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 
-
-function About() {
+const About = props => {
 
     return (
             <div>
-                About
+                {props.hotels[2].name}
                 <Link to='/'>back</Link>
             </div>
     );
 }
 
-export default About;
+const map = state =>{
+    return {
+        hotels : state.hotels
+    }
+}
+
+export default connect(map)(About);

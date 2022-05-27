@@ -1,4 +1,5 @@
-import React, {useContext} from "react";
+import React from "react";
+import {connect} from 'react-redux';
 import airlines from '../json/airlines.json'
 
 const FlightList = props => {
@@ -13,9 +14,8 @@ const FlightList = props => {
         }
     }
 
-
-    const render_flights = Object.keys(props.flight).map(function(key, index) {
-        var item = props.flight[key];
+    const render_flights = Object.keys(props.flights).map(function(key, index) {
+        var item = props.flights[key];
 
         return <div key={index} className="item">
             <img className="ui avatar image" src="https://cdn4.iconfinder.com/data/icons/aiga-symbol-signs/444/aiga_departingflights-512.png"/>
@@ -27,7 +27,7 @@ const FlightList = props => {
         </div>;
     });
 
-    if(props.flight !== {})
+    if(props.flights !== {})
     return (
         <div>
             <div className="ui ordered horizontal list">
@@ -37,4 +37,10 @@ const FlightList = props => {
     );
 }
 
-export default FlightList;
+const mapToProps = state => {
+    return {
+        flights: state.flights
+    }
+}
+
+export default connect(mapToProps)(FlightList);

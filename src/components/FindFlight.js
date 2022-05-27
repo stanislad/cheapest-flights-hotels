@@ -1,11 +1,10 @@
-import React, {startTransition, useEffect, useState} from 'react';
-import axios from "axios";
-import flights from '../api/filghts'
+import React, {useEffect, useState} from 'react';
+import {connect} from 'react-redux';
+import {fetchFlights, fetchHotel} from '../actions/index'
 import DatePicker from "./DatePicker";
 import Dropdown from "./Dropdown";
 
 const FindFlight = props => {
-    const [search, setSearch] = useState('');
 
     const options = [
         {
@@ -35,52 +34,16 @@ const FindFlight = props => {
     const [endDate, setEndDate] = useState(end_date);
 
     useEffect((url, config) => {
-        console.log(props.flight)
 
         const run = async () => {
 
-                var options = {
-                    method: 'GET',
-                    url: 'https://hotels-com-provider.p.rapidapi.com/v1/hotels/search',
-                    params: {
-                        checkin_date: startDate,
-                        checkout_date: endDate,
-                        sort_order: 'PRICE',
-                        destination_id: airport.value,
-                        adults_number: '1',
-                        locale: 'en_US',
-                        currency: 'GBP',
-                        children_ages: '4,0,15',
-                        price_min: '10',
-                        star_rating_ids: '3,4,5',
-                        accommodation_ids: '20,8,15,5,1',
-                        price_max: '500',
-                        page_number: '1',
-                        theme_ids: '14,27,25',
-                        amenity_ids: '527,2063',
-                        guest_rating_min: '4'
-                    },
-                    headers: {
-                        'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com',
-                        'X-RapidAPI-Key': '6c5c5fd766mshdbf12198c573467p1c37d2jsnc492dc52666f'
-                    }
-                };
+                props.fetchHotel(airport,startDate,endDate);
 
-                axios.request(options).then(function (response) {
-                    props.setHotel(response.data.searchResults.results);
-                }).catch(function (error) {
-                    console.error(error);
-                });
-
-
-            const res = await flights.get('v1/prices/cheap',{
-                params: {origin: 'MHT', page: 'None', currency: 'GBP', destination: airport.short},
-            })
-            props.setFlights(res.data.data[airport.short])
+                props.fetchFlights(airport);
         }
         run();
 
-    },[search, airport, startDate, endDate])
+    },[airport, startDate, endDate])
 
   return (
     <div className='ui raised very padded text container segment'>
@@ -92,9 +55,12 @@ const FindFlight = props => {
             setter={setAirport}
             selectedOption={airport}
         />
-        {/*<SearchBar search={search} setSearch={setSearch}/>*/}
     </div>
   );
 }
 
-export default FindFlight;
+const mapToProps = () =>{
+    return {}
+}
+
+export default connect(mapToProps, {fetchFlights, fetchHotel})(FindFlight);

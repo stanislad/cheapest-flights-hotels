@@ -1,10 +1,10 @@
 import React from "react";
-import $ from 'jquery';
+import {connect} from 'react-redux';
 import {Link} from "react-router-dom";
 
 const HotelList = props => {
 
-    const render_hotel = props.hotel.map((f,i)=>{
+    const render_hotel = props.hotels.map((f,i)=>{
 
         return (
             <div key={i} className="item">
@@ -28,7 +28,7 @@ const HotelList = props => {
         );
     })
 
-    if(props.hotel.length === 0)
+    if(props.hotels.length === 0)
     return (
         <div className="ui active centered inline loader"></div>
     );
@@ -42,4 +42,10 @@ const HotelList = props => {
     );
 }
 
-export default HotelList;
+const map = state => {
+    return {
+        hotels : state.hotels
+    }
+}
+
+export default connect(map)(HotelList);
