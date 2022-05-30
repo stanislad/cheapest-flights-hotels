@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
-import {fetchFlights, fetchHotel} from '../actions/index'
-import DatePicker from "./DatePicker";
-import Dropdown from "./Dropdown";
+import {fetchFlights, fetchHotel} from '../../actions'
+import DatePicker from "../DatePicker";
+import Dropdown from "../Dropdown";
 
 const FindFlight = props => {
 
@@ -33,7 +33,7 @@ const FindFlight = props => {
     const [startDate, setStartDate] = useState(start_date);
     const [endDate, setEndDate] = useState(end_date);
 
-    useEffect((url, config) => {
+    useEffect(() => {
 
         const run = async () => {
 
@@ -45,22 +45,32 @@ const FindFlight = props => {
 
     },[airport, startDate, endDate])
 
-  return (
-    <div className='ui raised very padded text container segment'>
-        <DatePicker label='Flight Date' date={startDate} setter={setStartDate}/>
-        <DatePicker label='Check out Date' date={endDate} setter={setEndDate}/>
-        <Dropdown
-            options={options}
-            label='Destination Airport'
-            setter={setAirport}
-            selectedOption={airport}
-        />
-    </div>
-  );
+
+    if(props.show)
+    {
+        return (
+            <div className='ui raised very padded text container segment'>
+                <DatePicker label='Flight Date' date={startDate} setter={setStartDate}/>
+                <DatePicker label='Check out Date' date={endDate} setter={setEndDate}/>
+                <Dropdown
+                    options={options}
+                    label='Destination Airport'
+                    setter={setAirport}
+                    selectedOption={airport}
+                />
+            </div>
+        );
+    }else{
+        return null;
+    }
+
 }
 
-const mapToProps = () =>{
-    return {}
+const mapToProps = state =>{
+    return {
+        hotels : state.hotels,
+        flights : state.flights
+    }
 }
 
 export default connect(mapToProps, {fetchFlights, fetchHotel})(FindFlight);

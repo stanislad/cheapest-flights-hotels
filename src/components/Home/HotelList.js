@@ -13,7 +13,7 @@ const HotelList = props => {
             <img className="ui image" src={f.optimizedThumbUrls.srpDesktop}/>
 
                 <div className="content">
-                <Link to='/about'>
+                <Link to={`/about/${i}`}>
                     <div className="header">{f.name}</div>
                     {f.neighbourhood}
                     <div className="ui tag labels">

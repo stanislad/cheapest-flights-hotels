@@ -1,13 +1,15 @@
-import React, {useState} from 'react';
-import FindFlight from "./FindFlight";
+import React, {useEffect} from 'react';
 import FlightList from "./FlightList";
 import HotelList from "./HotelList";
 
-function Home() {
+const Home = props => {
+
+    useEffect(() => {
+        props.showSetter(true);
+    }, []);
 
     return (
             <div>
-                <FindFlight/>
                 <FlightList/>
                 <HotelList/>
             </div>

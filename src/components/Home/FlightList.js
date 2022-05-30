@@ -1,6 +1,6 @@
 import React from "react";
 import {connect} from 'react-redux';
-import airlines from '../json/airlines.json'
+import airlines from '../../json/airlines.json'
 
 const FlightList = props => {
 

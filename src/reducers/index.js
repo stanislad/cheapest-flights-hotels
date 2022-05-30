@@ -5,7 +5,7 @@ export default combineReducers({
                     switch (action.type)
                     {
                         case 'FETCH_FLIGHTS' :
-                            return action.payload;
+                            return action.payload ?? state;
 
                         default :
                             return state;
