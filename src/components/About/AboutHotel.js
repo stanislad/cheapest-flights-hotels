@@ -1,6 +1,8 @@
 import React from 'react';
+import {Link, useParams} from "react-router-dom";
 
 const AboutHotel = ({hotel}) => {
+    const { index } = useParams();
 
     const renderLandmarks = hotel.landmarks.map((landmark, i) =>{
         return (
@@ -15,6 +17,7 @@ const AboutHotel = ({hotel}) => {
     })
 
     return (
+
             <div className="ui grid">
 
                 <div className="four wide column">
@@ -40,16 +43,21 @@ const AboutHotel = ({hotel}) => {
 
                 <div className="four wide column">
                     <h4>Price</h4>
+                    <i className="money bill alternate icon"/>
                     <s>{hotel.ratePlan.price.old}</s> <b>{hotel.ratePlan.price.current}</b>
                 </div>
 
-                <div className="four wide column" onClick={()=>alert('google maps')}>
-                    <h4>Address</h4>
-                    <p>
-                        {hotel.address.streetAddress}<br/>
-                        {hotel.address.locality}<br/>
-                        {hotel.address.postalCode}
-                    </p>
+                <div className="four wide column">
+                    <Link to={`/maps/${index}`}>
+
+                        <h4>Address</h4>
+                        <p><i className="map icon"/>
+
+                            {hotel.address.streetAddress}<br/>
+                            {hotel.address.locality}<br/>
+                            {hotel.address.postalCode}
+                        </p>
+                    </Link>
                 </div>
             </div>
     );

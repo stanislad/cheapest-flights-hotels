@@ -33,7 +33,7 @@ export const fetchHotel = (airport, startDate, endDate) => async (dispatch) => {
         },
         headers: {
             'X-RapidAPI-Host': 'hotels-com-provider.p.rapidapi.com',
-            'X-RapidAPI-Key': '6c5c5fd766mshdbf12198c573467p1c37d2jsnc492dc52666f'
+            'X-RapidAPI-Key': '858f668016mshcbd99a782c91030p1137cajsn6205ee1a62af'
         }
     };
 
