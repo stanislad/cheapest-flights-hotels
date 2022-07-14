@@ -39,7 +39,7 @@ const FindFlight = props => {
 
                 props.fetchHotel(airport,startDate,endDate);
 
-                //props.fetchFlights(airport);
+                props.fetchFlights(airport);
         }
         run();
 
